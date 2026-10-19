@@ -145,15 +145,27 @@ This is not how I originally had through the distribution would be, and therefor
 
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:**
+**Base model:** `distilbert-base-uncased`
+
+**Trained on:** Apple Silicon GPU (MPS), torch 2.14.1, recorded in `results.json`.
 
 **Settings:** <!-- epochs, learning rate, batch size, seed -->
+3 epochs, learning rate 2e-5, batch size 16, seed 42, max length 128 tokens.
 
 **Anything I changed from the defaults, and why:**
+Nothing. This is the default run.
 
 **Split sizes:** <!-- train / val / test, and per-label counts in the test
 split. If a label had fewer than about 8 in test, say so — it explains a lot
 of next unit's variance. -->
+
+| | Train | Val | Test |
+|---|---|---|---|
+| `the_music` | 95 | 20 | 20 |
+| `the_business` | 59 | 13 | 13 |
+| **Total** | 154 | 33 | 33 |
+
+Both labels have more than 8 posts in the test split.
 
 
 
