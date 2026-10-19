@@ -98,18 +98,20 @@ Label by what the post asks the reader to think about. If it mentions an album o
      cases. -->
 
 **Where the posts came from:**
+I scraped the posts from Arctic Shift which is a reddit post archive.
 
 **How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
-Say so plainly — the disclosure is required, not penalised. -->
+Cold first, Pre-labelled with AI and corrected.
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| `the_music` | 135 | 61% |
+| `the_business` | 85 | 39% |
+| **Total** | 220 | 100% |
+
+This is not how I originally had through the distribution would be, and therefore I have adjsuted my criteria.
 
 **Three hard cases**
 
@@ -117,25 +119,25 @@ Say so plainly — the disclosure is required, not penalised. -->
      been, and what you chose. These are worth more than the easy 190. -->
 
 **1.**
-> *The post:*
+> *The post:* "Has streaming made listeners less emotionally attached to individual albums?" The writer grew up listening to albums completely and asks whether streaming has changed that connection for everyone.
 >
-> *Could have been:*
+> *Could have been:* `the_music` or `the_business`
 >
-> *I chose, because:*
+> *I chose, because:* `the_business`. It's about albums and listening, but the question it asks is what a platform has done to listeners in general. Its subject is streaming's effect, not the music itself.
 
 **2.**
-> *The post:*
+> *The post:* "Hooked on an Album." It opens with "Streaming services have robbed us of the joy of falling in love with an album," then spends the rest of the post on how the writer comes to love a particular album.
 >
-> *Could have been:*
+> *Could have been:* `the_business` or `the_music`
 >
-> *I chose, because:*
+> *I chose, because:* `the_music`. It reads almost like case 1, but after the opening line, streaming drops out and the post is about the writer's own experience of an album. These two posts are where my decision rule matters most: the platform's effect on everyone is business, and one person's listening is music.
 
 **3.**
-> *The post:*
+> *The post:* "Do you think iconic songwriters ever secretly use uncredited songwriters to improve their work?" It uses Alex Turner and *AM* as the example.
 >
-> *Could have been:*
+> *Could have been:* `the_music` or `the_business`
 >
-> *I chose, because:*
+> *I chose, because:* `the_business`. It talks about songwriting, but the question is whether the industry hides who really writes the songs. A similar post asking whether artists *lose something artistically* when they use co-writers went to `the_music`, because that one is about how the songs come out.
 
 ---
 

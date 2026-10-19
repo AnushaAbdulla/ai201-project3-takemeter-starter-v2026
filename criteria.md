@@ -54,28 +54,28 @@ whether you hit them:
 ## 1. Overall accuracy is at least 0.75 on the test split, on all three seeds.
 
 **Why this target:**
-From what I have seen in the subreddit, I expect about 60% of my posts to be about `the_business`. So a model that always guesses business already scores about 0.60. With about 200 posts, the test split is about 30, so 0.75 means getting roughly 4 to 5 more posts right than that lazy guess. 
+I expected about 60% of my posts to be about `the_business`, but after labelling 220 posts the split came out the other way: 61% `the_music`, 39% `the_business`. So a model that always guesses music already scores about 0.61. The test split is about 33 posts, so 0.75 means getting roughly 4 to 5 more posts right than that lazy guess.
 
 ---
 
 ## 2. Macro F1 is at least 0.70 on the test split, on all three seeds.
 
 **Why this target:**
-Accuracy alone can hide a model that guesses`the_business` because it's the bigger label. Macro F1 weighs both labels equally, so it only passes if the model is actually telling music posts apart from business posts. I set it a little below accuracy because the smaller label will drag it down.
+Accuracy alone can hide a model that guesses `the_music` because it's the bigger label. Macro F1 weighs both labels equally, so it only passes if the model is actually telling music posts apart from business posts. I set it a little below accuracy because the smaller label will drag it down.
 
 ---
 
-## 3. `the_music` has an F1 of at least 0.65 on the test split, on all three seeds.
+## 3. `the_business` has an F1 of at least 0.65 on the test split, on all three seeds.
 
 **Why this target:**
-`the_music` is my smaller label, about 40% of posts, so only about 12 of them land in a 30-post test split. One wrong prediction moves its F1 by several points between seeds, so the target is looser than for the overall numbers. It's still above what guessing would get. 
+`the_business` is my smaller label, 85 of 220 posts (39%), so only about 13 of them land in a 33-post test split. One wrong prediction moves its F1 by several points between seeds, so the target is looser than for the overall numbers. It's still above what guessing would get.
 
 ---
 
-## 4. `the_business` has an F1 of at least 0.80 on the test split, on all three seeds.
+## 4. `the_music` has an F1 of at least 0.80 on the test split, on all three seeds.
 
 **Why this target:**
-`the_business` is my bigger label, about 60% of posts and about 18 in the test split, so it has the most training examples and the steadiest score. It should be the easiest thing the model does. If it can't reach 0.80 on business, the problem is probably my labels and not the amount of data, because this label has no shortage of examples.
+`the_music` is my bigger label, 135 of 220 posts (61%) and about 20 in the test split, so it has the most training examples and the steadiest score. It should be the easiest thing the model does. If it can't reach 0.80 on music, the problem is probably my labels and not the amount of data, because this label has no shortage of examples.
 
 ---
 
