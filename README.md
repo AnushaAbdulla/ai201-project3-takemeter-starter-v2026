@@ -183,14 +183,20 @@ Both labels have more than 8 posts in the test split.
 **Moment 1**
 
 - *What I asked for:*
+Asked AI to look at my 20 cold labels and write a label for the rest of my examples.
 - *What came back:*
+Good, but not perfect labels.
 - *What I changed:*
+Out off 200 I changed about 15 labels.
 
 **Moment 2**
 
 - *What I asked for:*
+Asked AI to count the number of labels for me
 - *What came back:*
+It did so successfully and gave me the number of each label
 - *What I changed:*
+My criterion to match, since my assumptions was the business label would be higher.
 
 **Pre-labelling disclosure:**
 
