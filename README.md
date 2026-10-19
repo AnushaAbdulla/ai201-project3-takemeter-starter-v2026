@@ -42,7 +42,7 @@
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
 
-
+TakeMeter sorts posts from r/LetsTalkMusic, a public subreddit for long-form discussion of music across all genres and eras. Each post gets one of two labels based on what it asks the reader to think about: `the_music` (the sound, songs, albums, or an artist's work) or `the_business` (the industry, streaming platforms, labels, careers, or drama). The split matters because a big share of the community's discussion is about everything around the music rather than the music itself, and many posts mention both. The classifier is fine-tuned on about 200 hand-labelled posts.
 
 ---
 
@@ -54,33 +54,39 @@
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `label_one`
+### `the_music`
 
 **Definition:**
+The post is about the music itself: the sound, songs, albums, or an artist's work.
 
 **Example 1:**
->
+>Title: "Where have all the epic melodies gone?"
+- discusses sound, and how it changed over time
 
 **Example 2:**
->
+> Title: "Critically acclaimed albums you don't like by artists you love"
+- about specific albums and how they sound to the listener
 
-### `label_two`
+### `the_business`
 
 **Definition:**
+The post is about what surrounds the music: the industry, streaming platforms, labels, careers, or drama.
 
 **Example 1:**
->
+>Title: "It's actually pretty shocking how much the major music industry downsized in 20 years."
+- industry, pitfalls, lost artists
 
 **Example 2:**
->
+>Title: "If you worked in specific music divisions and A&R for major labels, what happened to them?"
+- businesses and what happened to them
+
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `the_music` and `the_business`
 
 **The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
+Label by what the post asks the reader to think about. If it mentions an album or artist but the question is about money, fame, platforms, or drama, it's `the_business`. If it mentions the industry but the point is how the music sounds, it's `the_music`.
 
 
 
