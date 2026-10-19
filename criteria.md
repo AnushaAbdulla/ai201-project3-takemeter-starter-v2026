@@ -51,63 +51,38 @@ whether you hit them:
 
 ---
 
-## 1.
-
-<!-- Your criterion. It must name a number. -->
-
-
+## 1. Overall accuracy is at least 0.75 on the test split, on all three seeds.
 
 **Why this target:**
-
-
+From what I have seen in the subreddit, I expect about 60% of my posts to be about `the_business`. So a model that always guesses business already scores about 0.60. With about 200 posts, the test split is about 30, so 0.75 means getting roughly 4 to 5 more posts right than that lazy guess. 
 
 ---
 
-## 2.
-
-<!-- Your criterion. -->
-
-
+## 2. Macro F1 is at least 0.70 on the test split, on all three seeds.
 
 **Why this target:**
-
-
+Accuracy alone can hide a model that guesses`the_business` because it's the bigger label. Macro F1 weighs both labels equally, so it only passes if the model is actually telling music posts apart from business posts. I set it a little below accuracy because the smaller label will drag it down.
 
 ---
 
-## 3.
-
-<!-- Your criterion. -->
-
-
+## 3. `the_music` has an F1 of at least 0.65 on the test split, on all three seeds.
 
 **Why this target:**
-
-
+`the_music` is my smaller label, about 40% of posts, so only about 12 of them land in a 30-post test split. One wrong prediction moves its F1 by several points between seeds, so the target is looser than for the overall numbers. It's still above what guessing would get. 
 
 ---
 
-## 4.
-
-<!-- Your criterion. -->
-
-
+## 4. `the_business` has an F1 of at least 0.80 on the test split, on all three seeds.
 
 **Why this target:**
-
-
+`the_business` is my bigger label, about 60% of posts and about 18 in the test split, so it has the most training examples and the steadiest score. It should be the easiest thing the model does. If it can't reach 0.80 on business, the problem is probably my labels and not the amount of data, because this label has no shortage of examples.
 
 ---
 
-## 5.
-
-<!-- Your criterion. -->
-
-
+## 5. The model's most-confident third of test posts is at least 0.15 more accurate than its least-confident third, on all three seeds.
 
 **Why this target:**
-
-
+Many r/LetsTalkMusic posts mention both an album and the industry, so I expect the model to be unsure on exactly those mixed posts and sure on the clear ones. Each third is only about 10 posts, so a gap of 0.10 would be a single post and could happen by chance. At 0.15, the model's confidence has to actually mean something.
 
 ---
 
