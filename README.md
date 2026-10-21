@@ -209,23 +209,23 @@ My criterion to match, since my assumptions was the business label would be high
 
 ## Baseline vs. Trained
 
+
+
 <!-- Both models on the same posts. `python baseline.py --trained results.json`
      prints this table for you. -->
 
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Overall accuracy | 0.697 | 0.606 | -0.091 |
+| Macro F1 | 0.659 | 0.377 | -0.282 |
+| F1 — `the_business` | 0.545 | 0.000 | -0.545 |
+| F1 — `the_music` | 0.773 | 0.755 | -0.018 |
 
 **What I predicted before I looked:**
-<!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
-     prediction made afterwards isn't one. -->
+I predict the trained model will not do better than the baseline. Not sure why, but I have a feeling I broke something. 
 
 **What the gap actually means:**
-<!-- If the baseline matched your trained model, your fine-tuning added
-     nothing — and that is a real finding, not a failure. Say it plainly. -->
+The baseline beat my trained model on every measure, so my fine-tuning added nothing. It made things worse. The trained model never once predicted the_business: all 13 business posts were called music, and its 0.606 accuracy is exactly what always guessing music would score.
 
 
 
