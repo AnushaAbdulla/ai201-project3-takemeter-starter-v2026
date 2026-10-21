@@ -268,11 +268,11 @@ The baseline beat my trained model on every measure, so my fine-tuning added not
 
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Overall accuracy | ≥ 0.75 | MISSED | 0.606 on all three seedsalways guessing `the_music` scores (20 of 33). |
+| 2 | Macro F1 | ≥ 0.70 | MISSED | 0.377 on all three seeds |
+| 3 | F1 — `the_business` | ≥ 0.65 | MISSED | 0.000 on all three seeds. The model never predicted `the_business` once. |
+| 4 | F1 — `the_music` | ≥ 0.80 | MISSED | 0.755 on all three seeds. It caught every music post only because it called everything music. |
+| 5 | Confidence gap | ≥ 0.15 | MET | Gaps of 0.545, 0.364 and 0.545, all above 0.15. Met on paper, but every prediction was `the_music`. |
 
 **Diagnoses**
 
@@ -284,6 +284,16 @@ The baseline beat my trained model on every measure, so my fine-tuning added not
      ⚠️ Use your agreement report as evidence. It is the only instrument you
      have that can tell a LABELLING problem from a MODEL problem, and this
      section is graded on whether you used it that way. -->
+
+Criteria 1-4 all failed because the model just always guesses the_music. All 13 business posts in the test split were called `the_music` and none went the other way. The four misses aren't four separate problems.
+
+It is a model problem because, I matched staff on 30 of 30 posts under a taxonomy I didn't write, including the posts staff picked because they're ambiguous. When I'm given a written rule, I apply it consistently. That makes "a boundary I applied inconsistently" an unlikely main cause.
+
+The zero-shot model, given only my two definitions, reached 0.545 F1 on `the_business`. My trained model got 0.000. If my business labels were incoherent, a model reading the definition cold shouldn't be able to find them either. So the label is learnable, and my trained model didn't learn it.
+
+`MAX_LENGTH` is 128 tokens, but my median post is about 970 characters, so the model sees only the opening of most posts. Many of my business posts only turn to the industry or streaming after an opening about an album. On top of that,`the_business` has 59 training posts against 95 for music. With so little training, always guessing music is the safest strategy, and that's what the model found.
+
+Criterion 5 was met, but only because the model's confidence was higher on music posts. With no business predictions, it doesn't show useful confidence yet.
 
 
 
@@ -297,7 +307,7 @@ The baseline beat my trained model on every measure, so my fine-tuning added not
      data/staff_taxonomy.md, not your own — so every argument below is made
      from those definitions and those decision rules. -->
 
-**Agreement rate:** ___ / 30 = ___%
+**Agreement rate:** 30 / 30 = 100%
 
 <!-- Nobody grades this number. A 60% who argues every disagreement from the
      stated rules beats a 95% who wrote "staff was right" nine times. Several
@@ -305,7 +315,7 @@ The baseline beat my trained model on every measure, so my fine-tuning added not
      winning some of these. -->
 
 **Disagreements**
-
+This sections is N/A because I scored correctly.
 <!-- Three lines each: the post, both labels, and who you think is right and
      why — grounded in the staff definitions you were both applying.
 
