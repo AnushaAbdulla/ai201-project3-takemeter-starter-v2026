@@ -249,17 +249,13 @@ The baseline beat my trained model on every measure, so my fine-tuning added not
 <!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
      An image of a matrix earns nothing. -->
 
-| true \ predicted |  |  |  |
-|---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| true \ predicted | the_music | the_business |
+|---|---|---|
+| **the_music** | 20 | 0 |
+| **the_business** | 13 | 0 |
 
 **My biggest off-diagonal number, and what it means:**
-<!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
-     direction. "7 real analysis posts were called hot_take and only 3 went the
-     other way" is a direction, not just an error rate. -->
-
+13: all 13 real the_business posts in the test split were called the_music, and 0 went the other way. The model never learned the boundary from the business side. It treated every post as music, so its 20 "correct" music predictions don't show it recognized music either. 
 
 
 ---
