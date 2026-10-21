@@ -238,11 +238,12 @@ The baseline beat my trained model on every measure, so my fine-tuning added not
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.75 | 0.606 | 0.606 | 0.606 | MISSED |
+| 2. Macro F1 | ≥ 0.70 | 0.377 | 0.377 | 0.377 | MISSED |
+| 3. F1 — the_business | ≥ 0.65 | 0.000 | 0.000 | 0.000 | MISSED |
+| 4. F1 — the_music | ≥ 0.80 | 0.755 | 0.755 | 0.755 | MISSED |
+| 5. Confidence gap | ≥ 0.15 | 0.545 (0.909 − 0.364) | 0.364 (0.727 − 0.364) | 0.545 (0.818 − 0.273) | MET |
+
 
 ### Confusion matrix
 
