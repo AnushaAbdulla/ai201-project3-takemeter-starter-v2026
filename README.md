@@ -187,7 +187,7 @@ Asked AI to look at my 20 cold labels and write a label for the rest of my examp
 - *What came back:*
 Good, but not perfect labels.
 - *What I changed:*
-Out off 200 I changed about 15 labels.
+Out of 200 I changed about 15 labels.
 
 **Moment 2**
 
