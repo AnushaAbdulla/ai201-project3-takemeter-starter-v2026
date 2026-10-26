@@ -356,23 +356,29 @@ This sections is N/A because I scored correctly.
 ## The Improvement
 
 **What I changed:**
+I raised `MAX_LENGTH` from 128 to 512 tokens. Nothing else changed: same 220 labels, 3 epochs, learning rate 2e-5, batch size 16, and the same three seeds, so the same test posts.
 
 **Which diagnosis pointed at it:**
+At 128 tokens, 189 of my 220 posts (86%) were cut off, and the median post is about 220 tokens. Many of my business posts only get to the industry or streaming after an opening about an album, so the model may never have seen the part that makes them business. My agreement check (30/30) and the baseline (0.545 F1 on `the_business` from my definitions alone) pointed away from my labels and toward the training setup. At 512, only 20 posts (9%) are cut off.
 
 ### Run Log — After
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.75 | 0.606 | 0.606 | 0.606 | MISSED |
+| 2. Macro F1 | ≥ 0.70 | 0.377 | 0.377 | 0.377 | MISSED |
+| 3. F1 — the_business | ≥ 0.65 | 0.000 | 0.000 | 0.000 | MISSED |
+| 4. F1 — the_music | ≥ 0.80 | 0.755 | 0.755 | 0.755 | MISSED |
+| 5. Confidence gap | ≥ 0.15 | 0.545 (0.818 − 0.273) | 0.545 (0.818 − 0.273) | 0.455 (0.818 − 0.364) | MET |
 
 **Did it help, and how do I know:**
 
 <!-- If it didn't, say so. Relabelling that didn't help is a genuinely
      interesting result and earns full credit. -->
+
+No. Raising `MAX_LENGTH` to 512 changed nothing that matters. On all three seeds, the model still called every one of the 33 test posts `the_music`. The confusion matrix is identical to before: 20 music posts called music, all 13 business posts called music, and the `the_business` column is all zeros. The only number that moved was the confidence gap, and that still comes from the model being more sure on music posts, not from it predicting business.
+
+Cut-off text wasn't why the model ignored `the_business`: it now sees the whole post for 91% of my data and makes the same choice. What's left is the other cause I named: with only 3 epochs and 59 business posts to train on, the model never gets past "always guess the majority label." My fine-tuned model just isn't getting enough training or enough business examples to learn it.
 
 
 
@@ -382,11 +388,21 @@ This sections is N/A because I scored correctly.
 
 <!-- For each criterion still missed: what you'd do, and why you stopped. -->
 
+All four missed criteria have the same root cause: the model never predicts `the_business`. So the fixes below all aim at that one problem first.
+
+1. Overall accuracy (0.606, target 0.75) and 2. Macro F1 (0.377, target 0.70). These can't move until the model predicts business at all, because     0.606 is exactly the always-guess-music score. Next I'd train for more epochs, around 8–10 instead of 3. 
+
+3. F1 — `the_business` (0.000, target 0.65). Next I'd add about 30 more business posts, bringing it from 85 to about 115. Only 59 are in the training split, against 95 music posts, so the model gets far more reward for guessing music. The baseline reached 0.545 on business from my definitions alone, so the label is learnable. My model just doesn't see enough of it.
+
+4. F1 — `the_music` (0.755, target 0.80). This one is held back by the business problem. Precision is only 0.61, because all 13 business posts land in the music column.
+
 
 
 **The gap between what I meant my labels to capture and what the model
 learned:**
 <!-- Two sentences. Your confusion matrix is the evidence. -->
+
+I meant my labels to separate posts about the music itself from posts about everything around it, like the industry, streaming and careers. The model learned only that most posts are music: the confusion matrix sends all 13 business posts to `the_music` and none the other way, on every seed and at both text lengths.
 
 
 
